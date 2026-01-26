@@ -1,0 +1,15 @@
+<div class="app-container">
+  <app-connection-indicator></app-connection-indicator>
+
+  <app-sidebar [isOpen]="sidebarOpen" (close)="closeSidebar()">
+  </app-sidebar>
+
+  <div class="main-content" [class.sidebar-open]="sidebarOpen">
+    <router-outlet></router-outlet>
+  </div>
+
+  <app-quick-access *ngIf="showQuickAccess" [class.sidebar-open]="sidebarOpen"></app-quick-access>
+
+  <div class="sidebar-overlay" [class.active]="sidebarOpen" (click)="closeSidebar()" *ngIf="sidebarOpen">
+  </div>
+</div>

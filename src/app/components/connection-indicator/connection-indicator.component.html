@@ -1,0 +1,19 @@
+<div class="connection-indicator" [class.offline]="!isOnline" [class.show]="showIndicator">
+  <mat-card class="indicator-content" [class.offline-card]="!isOnline">
+    <mat-card-content>
+      <mat-icon class="icon">{{ isOnline ? 'wifi' : 'wifi_off' }}</mat-icon>
+      <span class="message">
+        <span *ngIf="isOnline">Conexión restaurada</span>
+        <span *ngIf="!isOnline">
+          Sin conexión - Modo offline
+          <mat-chip *ngIf="pendingRequests > 0" class="pending-badge">
+            {{ pendingRequests }} pendiente{{ pendingRequests > 1 ? 's' : '' }}
+          </mat-chip>
+        </span>
+      </span>
+      <button mat-icon-button (click)="dismiss()" *ngIf="!isOnline" aria-label="Cerrar" class="close-btn">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

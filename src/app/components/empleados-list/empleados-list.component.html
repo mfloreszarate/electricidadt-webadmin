@@ -1,0 +1,104 @@
+<div class="empleados-container">
+  <mat-toolbar class="header-toolbar">
+    <button mat-icon-button (click)="toggleSidebar()" aria-label="Abrir menú">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="header-content"></div>
+    <button mat-raised-button color="primary" (click)="nuevoEmpleado()">
+      <mat-icon>add</mat-icon>
+      <span>Nuevo Empleado</span>
+    </button>
+  </mat-toolbar>
+
+  <div class="content">
+    <mat-card class="search-card">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Buscar empleado</mat-label>
+        <input matInput [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()" placeholder="Nombre, email, puesto...">
+        <mat-icon matPrefix>search</mat-icon>
+      </mat-form-field>
+    </mat-card>
+
+    <mat-card class="table-card">
+      <mat-card-content>
+        <div *ngIf="loading" class="loading-container">
+          <mat-spinner diameter="50"></mat-spinner>
+          <p>Cargando empleados...</p>
+        </div>
+
+        <div *ngIf="!loading && dataSource.data.length === 0" class="empty-state">
+          <mat-icon>people_outline</mat-icon>
+          <p>No se encontraron empleados</p>
+        </div>
+
+        <div class="table-wrapper" *ngIf="!loading && dataSource.data.length > 0">
+          <table mat-table [dataSource]="dataSource" class="empleados-table">
+          <!-- Nombre Column -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let empleado">{{ empleado.nombre }}</td>
+          </ng-container>
+
+          <!-- Apellido Column -->
+          <ng-container matColumnDef="apellido">
+            <th mat-header-cell *matHeaderCellDef>Apellido</th>
+            <td mat-cell *matCellDef="let empleado">{{ empleado.apellido }}</td>
+          </ng-container>
+
+          <!-- Email Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let empleado">
+              <a [href]="'mailto:' + empleado.email" class="email-link">{{ empleado.email }}</a>
+            </td>
+          </ng-container>
+
+          <!-- Teléfono Column -->
+          <ng-container matColumnDef="telefono">
+            <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+            <td mat-cell *matCellDef="let empleado">{{ empleado.telefono }}</td>
+          </ng-container>
+
+          <!-- Puesto Column -->
+          <ng-container matColumnDef="puesto">
+            <th mat-header-cell *matHeaderCellDef>Puesto</th>
+            <td mat-cell *matCellDef="let empleado">{{ empleado.puesto }}</td>
+          </ng-container>
+
+          <!-- Departamento Column -->
+          <ng-container matColumnDef="departamento">
+            <th mat-header-cell *matHeaderCellDef>Departamento</th>
+            <td mat-cell *matCellDef="let empleado">{{ empleado.departamento }}</td>
+          </ng-container>
+
+          <!-- Activo Column -->
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let empleado">
+              <mat-chip [class.active]="empleado.activo" [class.inactive]="!empleado.activo">
+                {{ empleado.activo ? 'Activo' : 'Inactivo' }}
+              </mat-chip>
+            </td>
+          </ng-container>
+
+          <!-- Acciones Column -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let empleado">
+              <button mat-icon-button (click)="editarEmpleado(empleado.id!)" matTooltip="Editar">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="eliminarEmpleado(empleado)" matTooltip="Eliminar">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

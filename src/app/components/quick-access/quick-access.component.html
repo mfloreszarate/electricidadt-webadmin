@@ -1,0 +1,12 @@
+<div class="quick-access-bar">
+  <div class="quick-access-content">
+    <button 
+      *ngFor="let action of quickActions" 
+      mat-icon-button 
+      class="quick-access-button"
+      (click)="navigateTo(action.route)"
+      [matTooltip]="action.label">
+      <mat-icon>{{ action.icon }}</mat-icon>
+    </button>
+  </div>
+</div>

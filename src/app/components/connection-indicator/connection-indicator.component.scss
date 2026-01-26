@@ -1,0 +1,92 @@
+.connection-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  transform: translateY(-100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  padding: 0;
+
+  &.show {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .indicator-content {
+    margin: 0;
+    border-radius: 0;
+    background: linear-gradient(135deg, #0B3C5D 0%, #0A4A6F 100%);
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(11, 60, 93, 0.3);
+    backdrop-filter: blur(20px);
+
+    &.offline-card {
+      background: linear-gradient(135deg, #E57373 0%, #EF5350 100%);
+      color: white;
+    }
+
+    mat-card-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 14px 24px;
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: -0.01em;
+    }
+  }
+
+  .icon {
+    flex-shrink: 0;
+    animation: pulse 2s ease-in-out infinite;
+    color: inherit;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+
+  .message {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    color: inherit;
+    font-weight: 600;
+  }
+
+  .pending-badge {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 4px 10px;
+    backdrop-filter: blur(10px);
+  }
+
+  .close-btn {
+    color: white;
+    flex-shrink: 0;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}

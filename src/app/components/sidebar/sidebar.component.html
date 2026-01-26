@@ -1,0 +1,32 @@
+<aside class="sidebar" [class.open]="isOpen">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <img src="assets/images/electricidadt-logo.jpeg" alt="ElectricidadT" class="logo-image" />
+      <!-- <span>ElectricidadT</span> -->
+    </div>
+    <button mat-icon-button (click)="closeSidebar()" aria-label="Cerrar menú">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <mat-nav-list class="sidebar-nav">
+    <a mat-list-item *ngFor="let item of menuItems" (click)="navigateTo(item.route)">
+      <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+      <span matListItemTitle>{{ item.label }}</span>
+    </a>
+  </mat-nav-list>
+
+  <div class="sidebar-footer">
+    <div class="user-info">
+      <div class="user-avatar">M</div>
+      <div class="user-details">
+        <p class="user-name">Usuario</p>
+        <p class="user-email">usuario.conep&#64;gmail.com</p>
+      </div>
+    </div>
+    <button mat-stroked-button color="warn" class="logout-button" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Cerrar sesión</span>
+    </button>
+  </div>
+</aside>

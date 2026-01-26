@@ -1,0 +1,47 @@
+<div class="dashboard-container">
+  <mat-toolbar class="dashboard-header">
+    <button mat-icon-button (click)="toggleSidebar()" aria-label="Abrir menú">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="header-content"></div>
+    <button mat-icon-button aria-label="Notificaciones">
+      <mat-icon [matBadge]="3" matBadgeColor="warn">notifications</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <main class="dashboard-content">
+    <section class="stats-grid">
+      <mat-card class="stat-card" *ngFor="let stat of stats" [style.--card-color]="stat.color">
+        <mat-card-content>
+          <mat-icon class="stat-icon">{{ stat.icon }}</mat-icon>
+          <div class="stat-content">
+            <p class="stat-label">{{ stat.label }}</p>
+            <div class="stat-value">
+              <span class="value">{{ stat.value }}</span>
+              <span class="unit">{{ stat.unit }}</span>
+            </div>
+            <mat-chip [class.positive]="stat.trend.startsWith('+')" [class.negative]="stat.trend.startsWith('-')"
+              class="stat-trend">
+              {{ stat.trend }}
+            </mat-chip>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </section>
+
+    <section class="activity-section">
+      <h2>Actividad Reciente</h2>
+      <mat-card>
+        <mat-list>
+          <mat-list-item *ngFor="let activity of recentActivity">
+            <mat-icon matListItemIcon class="activity-icon">{{ activity.icon }}</mat-icon>
+            <div matListItemTitle class="activity-action">{{ activity.action }}</div>
+            <div matListItemLine class="activity-time">{{ activity.time }}</div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </section>
+
+
+  </main>
+</div>

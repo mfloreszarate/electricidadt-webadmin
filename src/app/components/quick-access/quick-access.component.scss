@@ -1,0 +1,60 @@
+.quick-access-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #FFFFFF;
+  border-top: 1px solid #E6E6E6;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+  padding: 0.75rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+  :host.sidebar-open .quick-access-bar {
+    left: 300px; // Ajustar cuando el sidebar está visible en desktop
+  }
+}
+
+.quick-access-content {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.quick-access-button {
+  color: #0B3C5D !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  mat-icon {
+    color: #0B3C5D !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover {
+    background: rgba(11, 60, 93, 0.1) !important;
+    transform: translateY(-2px);
+
+    mat-icon {
+      color: #0A4A6F !important;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .app-container:has(.sidebar.open) .quick-access-bar {
+    left: 300px; // Ajustar cuando el sidebar está visible en desktop
+  }
+}

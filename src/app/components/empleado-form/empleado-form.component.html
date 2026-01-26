@@ -1,0 +1,125 @@
+<div class="form-container">
+  <mat-toolbar class="header-toolbar">
+    <button mat-icon-button (click)="toggleSidebar()" aria-label="Abrir menú">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="header-content"></div>
+  </mat-toolbar>
+
+  <div class="content">
+    <mat-card class="form-card">
+      <mat-card-content>
+        <form [formGroup]="empleadoForm" (ngSubmit)="onSubmit()">
+          <div class="form-grid">
+            <!-- Nombre -->
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input matInput formControlName="nombre" required>
+              <mat-icon matPrefix>person</mat-icon>
+              <mat-error *ngIf="empleadoForm.get('nombre')?.hasError('required')">
+                {{ getErrorMessage('nombre') }}
+              </mat-error>
+              <mat-error *ngIf="empleadoForm.get('nombre')?.hasError('minlength')">
+                {{ getErrorMessage('nombre') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Apellido -->
+            <mat-form-field appearance="outline">
+              <mat-label>Apellido</mat-label>
+              <input matInput formControlName="apellido" required>
+              <mat-icon matPrefix>person</mat-icon>
+              <mat-error *ngIf="empleadoForm.get('apellido')?.hasError('required')">
+                {{ getErrorMessage('apellido') }}
+              </mat-error>
+              <mat-error *ngIf="empleadoForm.get('apellido')?.hasError('minlength')">
+                {{ getErrorMessage('apellido') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Email -->
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email" required>
+              <mat-icon matPrefix>email</mat-icon>
+              <mat-error *ngIf="empleadoForm.get('email')?.hasError('required')">
+                {{ getErrorMessage('email') }}
+              </mat-error>
+              <mat-error *ngIf="empleadoForm.get('email')?.hasError('email')">
+                {{ getErrorMessage('email') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Teléfono -->
+            <mat-form-field appearance="outline">
+              <mat-label>Teléfono</mat-label>
+              <input matInput formControlName="telefono" required>
+              <mat-icon matPrefix>phone</mat-icon>
+              <mat-error *ngIf="empleadoForm.get('telefono')?.hasError('required')">
+                {{ getErrorMessage('telefono') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Puesto -->
+            <mat-form-field appearance="outline">
+              <mat-label>Puesto</mat-label>
+              <input matInput formControlName="puesto" required>
+              <mat-icon matPrefix>work</mat-icon>
+              <mat-error *ngIf="empleadoForm.get('puesto')?.hasError('required')">
+                {{ getErrorMessage('puesto') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Departamento -->
+            <mat-form-field appearance="outline">
+              <mat-label>Departamento</mat-label>
+              <mat-select formControlName="departamento" required>
+                <mat-option value="Instalaciones">Instalaciones</mat-option>
+                <mat-option value="Diseño">Diseño</mat-option>
+                <mat-option value="Operaciones">Operaciones</mat-option>
+                <mat-option value="Mantenimiento">Mantenimiento</mat-option>
+                <mat-option value="Administración">Administración</mat-option>
+                <mat-option value="Ventas">Ventas</mat-option>
+              </mat-select>
+              <mat-icon matPrefix>business</mat-icon>
+              <mat-error *ngIf="empleadoForm.get('departamento')?.hasError('required')">
+                {{ getErrorMessage('departamento') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Fecha de Ingreso -->
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha de Ingreso</mat-label>
+              <input matInput type="date" formControlName="fechaIngreso" required>
+              <mat-icon matPrefix>calendar_today</mat-icon>
+              <mat-error *ngIf="empleadoForm.get('fechaIngreso')?.hasError('required')">
+                {{ getErrorMessage('fechaIngreso') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Activo -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Estado</mat-label>
+              <mat-select formControlName="activo">
+                <mat-option [value]="true">Activo</mat-option>
+                <mat-option [value]="false">Inactivo</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="form-actions">
+            <button mat-stroked-button type="button" (click)="cancelar()" [disabled]="loading">
+              <mat-icon>cancel</mat-icon>
+              <span>Cancelar</span>
+            </button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="loading || empleadoForm.invalid">
+              <mat-spinner *ngIf="loading" diameter="20" class="button-spinner"></mat-spinner>
+              <mat-icon *ngIf="!loading">{{ isEditMode ? 'save' : 'add' }}</mat-icon>
+              <span>{{ isEditMode ? 'Guardar Cambios' : 'Crear Empleado' }}</span>
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
