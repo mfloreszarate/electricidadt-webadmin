@@ -1,6 +1,6 @@
 .empleados-container {
   min-height: 100vh;
-  background: #E6E6E6;
+  background: #F5F7FA;
   padding-bottom: 5rem; // Espacio para la barra de accesos rápidos
 }
 
@@ -57,41 +57,294 @@
 .search-card {
   margin-bottom: 1.5rem;
   background: #FFFFFF !important;
-  border: 1px solid #E6E6E6;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  mat-card-content {
+    padding: 1rem !important;
+  }
 
   .search-field {
-    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: white;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: all 0.2s;
 
-    ::ng-deep .mat-mdc-text-field-wrapper {
-      background-color: #E6E6E6;
+    &:focus-within {
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
     }
 
-    ::ng-deep .mat-mdc-form-field-label {
-      color: #4A4A4A;
+    .search-icon {
+      color: #6B7280;
+      font-size: 1.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      flex-shrink: 0;
     }
 
-    ::ng-deep .mat-mdc-input-element {
-      color: #1C1C1C;
-    }
+    .search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 0.9375rem;
+      color: #111827;
+      font-family: 'Inter', sans-serif;
+      padding: 0;
 
-    mat-icon[matPrefix] {
-      color: #0B3C5D !important;
+      &::placeholder {
+        color: #9CA3AF;
+      }
     }
   }
 }
 
 .table-card {
   background: #FFFFFF !important;
-  border: 1px solid #E6E6E6;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 
   mat-card-content {
     padding: 1rem !important;
   }
 }
 
+/* Vista de Cards para Mobile */
+.cards-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.empleado-card {
+  background: #FFFFFF !important;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  &.expanded {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  mat-card-content {
+    padding: 0 !important;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.25rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #F9FAFB;
+    }
+
+    .card-title {
+      flex: 1;
+      min-width: 0;
+
+      h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #111827;
+        letter-spacing: -0.01em;
+      }
+
+      mat-chip {
+        font-size: 0.75rem;
+        height: 24px;
+        padding: 0 0.5rem;
+      }
+    }
+
+    .card-header-actions {
+      display: flex;
+      align-items: center;
+      margin-left: 0.5rem;
+
+      .expand-icon {
+        color: #6B7280;
+        transition: transform 0.2s, color 0.2s;
+        font-size: 1.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+
+        &.expanded {
+          transform: rotate(180deg);
+          color: #2C3E50;
+        }
+      }
+    }
+  }
+
+  .card-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0 1.25rem;
+    border-top: 1px solid #F3F4F6;
+
+    &.expanded {
+      max-height: 500px;
+      padding: 1.25rem;
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      color: #374151;
+      margin-bottom: 0.75rem;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      .detail-icon {
+        font-size: 1.125rem;
+        width: 1.125rem;
+        height: 1.125rem;
+        color: #6B7280;
+        flex-shrink: 0;
+      }
+
+      span,
+      a {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .email-link {
+        color: #2C3E50;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+          color: #1F2937;
+        }
+      }
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #F3F4F6;
+
+      .action-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+
+        mat-icon {
+          font-size: 1.125rem;
+          width: 1.125rem;
+          height: 1.125rem;
+        }
+      }
+    }
+  }
+}
+
+/* Ajustar estilos de chips en cards */
+.cards-container {
+  mat-chip {
+    &.active {
+      background-color: #D1FAE5 !important;
+      color: #065F46 !important;
+    }
+
+    &.inactive {
+      background-color: #F3F4F6 !important;
+      color: #6B7280 !important;
+    }
+  }
+}
+
+/* Vista de Tabla para Desktop */
 .table-wrapper {
   overflow-x: auto;
   width: 100%;
+  display: none; // Oculto por defecto (mobile first)
+
+  &.desktop-only {
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+}
+
+.cards-container {
+  @media (min-width: 768px) {
+    display: none; // Ocultar cards en desktop
+  }
+}
+
+/* Estilos del paginador */
+::ng-deep mat-paginator {
+  background: transparent !important;
+  border-top: 1px solid #F3F4F6;
+  padding: 1rem 0 !important;
+  margin-top: 1rem;
+
+  .mat-mdc-paginator-container {
+    justify-content: center;
+    padding: 0 !important;
+  }
+
+  .mat-mdc-paginator-page-size-label,
+  .mat-mdc-paginator-range-label {
+    color: #6B7280 !important;
+    font-size: 0.875rem;
+  }
+
+  .mat-mdc-icon-button {
+    color: #374151 !important;
+
+    &:hover {
+      background: #F3F4F6 !important;
+    }
+
+    &[disabled] {
+      color: #D1D5DB !important;
+    }
+  }
+
+  .mat-mdc-select-value {
+    color: #111827 !important;
+  }
+
+  .mat-mdc-select-arrow {
+    color: #6B7280 !important;
+  }
 }
 
 .loading-container {

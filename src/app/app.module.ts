@@ -16,6 +16,7 @@ import { ConnectionIndicatorComponent } from './components/connection-indicator/
 import { EmpleadosListComponent } from './components/empleados-list/empleados-list.component';
 import { EmpleadoFormComponent } from './components/empleado-form/empleado-form.component';
 import { QuickAccessComponent } from './components/quick-access/quick-access.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { OfflineInterceptor } from './interceptors/offline.interceptor';
 import { MaterialModule } from './material.module';
 
@@ -28,7 +29,8 @@ import { MaterialModule } from './material.module';
     ConnectionIndicatorComponent,
     EmpleadosListComponent,
     EmpleadoFormComponent,
-    QuickAccessComponent
+    QuickAccessComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

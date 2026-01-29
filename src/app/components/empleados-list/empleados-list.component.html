@@ -1,5 +1,5 @@
 <div class="empleados-container">
-  <mat-toolbar class="header-toolbar">
+  <!-- <mat-toolbar class="header-toolbar">
     <button mat-icon-button (click)="toggleSidebar()" aria-label="Abrir menú">
       <mat-icon>menu</mat-icon>
     </button>
@@ -8,15 +8,15 @@
       <mat-icon>add</mat-icon>
       <span>Nuevo Empleado</span>
     </button>
-  </mat-toolbar>
+  </mat-toolbar> -->
 
   <div class="content">
     <mat-card class="search-card">
-      <mat-form-field appearance="outline" class="search-field">
-        <mat-label>Buscar empleado</mat-label>
-        <input matInput [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()" placeholder="Nombre, email, puesto...">
-        <mat-icon matPrefix>search</mat-icon>
-      </mat-form-field>
+      <div class="search-field">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()"
+          placeholder="Buscar empleado: nombre, email, puesto..." class="search-input">
+      </div>
     </mat-card>
 
     <mat-card class="table-card">
@@ -31,73 +31,61 @@
           <p>No se encontraron empleados</p>
         </div>
 
-        <div class="table-wrapper" *ngIf="!loading && dataSource.data.length > 0">
-          <table mat-table [dataSource]="dataSource" class="empleados-table">
-          <!-- Nombre Column -->
-          <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef>Nombre</th>
-            <td mat-cell *matCellDef="let empleado">{{ empleado.nombre }}</td>
-          </ng-container>
-
-          <!-- Apellido Column -->
-          <ng-container matColumnDef="apellido">
-            <th mat-header-cell *matHeaderCellDef>Apellido</th>
-            <td mat-cell *matCellDef="let empleado">{{ empleado.apellido }}</td>
-          </ng-container>
-
-          <!-- Email Column -->
-          <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef>Email</th>
-            <td mat-cell *matCellDef="let empleado">
-              <a [href]="'mailto:' + empleado.email" class="email-link">{{ empleado.email }}</a>
-            </td>
-          </ng-container>
-
-          <!-- Teléfono Column -->
-          <ng-container matColumnDef="telefono">
-            <th mat-header-cell *matHeaderCellDef>Teléfono</th>
-            <td mat-cell *matCellDef="let empleado">{{ empleado.telefono }}</td>
-          </ng-container>
-
-          <!-- Puesto Column -->
-          <ng-container matColumnDef="puesto">
-            <th mat-header-cell *matHeaderCellDef>Puesto</th>
-            <td mat-cell *matCellDef="let empleado">{{ empleado.puesto }}</td>
-          </ng-container>
-
-          <!-- Departamento Column -->
-          <ng-container matColumnDef="departamento">
-            <th mat-header-cell *matHeaderCellDef>Departamento</th>
-            <td mat-cell *matCellDef="let empleado">{{ empleado.departamento }}</td>
-          </ng-container>
-
-          <!-- Activo Column -->
-          <ng-container matColumnDef="activo">
-            <th mat-header-cell *matHeaderCellDef>Estado</th>
-            <td mat-cell *matCellDef="let empleado">
-              <mat-chip [class.active]="empleado.activo" [class.inactive]="!empleado.activo">
-                {{ empleado.activo ? 'Activo' : 'Inactivo' }}
-              </mat-chip>
-            </td>
-          </ng-container>
-
-          <!-- Acciones Column -->
-          <ng-container matColumnDef="acciones">
-            <th mat-header-cell *matHeaderCellDef>Acciones</th>
-            <td mat-cell *matCellDef="let empleado">
-              <button mat-icon-button (click)="editarEmpleado(empleado.id!)" matTooltip="Editar">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button mat-icon-button color="warn" (click)="eliminarEmpleado(empleado)" matTooltip="Eliminar">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+        <!-- Vista de Cards para Mobile -->
+        <div class="cards-container" *ngIf="!loading && dataSource.data.length > 0">
+          <mat-card class="empleado-card" *ngFor="let empleado of paginatedData"
+            [class.expanded]="isCardExpanded(empleado.id!)">
+            <mat-card-content>
+              <div class="card-header" (click)="toggleCard(empleado.id!)">
+                <div class="card-title">
+                  <h3>{{ empleado.nombre }} {{ empleado.apellido }}</h3>
+                  <mat-chip [class.active]="empleado.activo" [class.inactive]="!empleado.activo">
+                    {{ empleado.activo ? 'Activo' : 'Inactivo' }}
+                  </mat-chip>
+                </div>
+                <div class="card-header-actions">
+                  <mat-icon class="expand-icon" [class.expanded]="isCardExpanded(empleado.id!)">
+                    {{ isCardExpanded(empleado.id!) ? 'expand_less' : 'expand_more' }}
+                  </mat-icon>
+                </div>
+              </div>
+              <div class="card-details" [class.expanded]="isCardExpanded(empleado.id!)">
+                <div class="detail-item">
+                  <mat-icon class="detail-icon">email</mat-icon>
+                  <a [href]="'mailto:' + empleado.email" class="email-link">{{ empleado.email }}</a>
+                </div>
+                <div class="detail-item">
+                  <mat-icon class="detail-icon">phone</mat-icon>
+                  <span>{{ empleado.telefono }}</span>
+                </div>
+                <div class="detail-item">
+                  <mat-icon class="detail-icon">work</mat-icon>
+                  <span>{{ empleado.puesto }}</span>
+                </div>
+                <div class="detail-item">
+                  <mat-icon class="detail-icon">business</mat-icon>
+                  <span>{{ empleado.departamento }}</span>
+                </div>
+                <div class="card-actions">
+                  <button mat-stroked-button (click)="editarEmpleado(empleado.id!); $event.stopPropagation()"
+                    class="action-btn">
+                    <mat-icon>edit</mat-icon>
+                    <span>Editar</span>
+                  </button>
+                  <button mat-stroked-button color="warn" (click)="eliminarEmpleado(empleado); $event.stopPropagation()"
+                    class="action-btn">
+                    <mat-icon>delete</mat-icon>
+                    <span>Eliminar</span>
+                  </button>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
         </div>
+        <!-- Paginador -->
+        <mat-paginator *ngIf="!loading && dataSource.data.length > 0" [pageSizeOptions]="[5, 10, 20, 50]"
+          [pageSize]="10" showFirstLastButtons aria-label="Seleccionar página">
+        </mat-paginator>
       </mat-card-content>
     </mat-card>
   </div>

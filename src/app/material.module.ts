@@ -23,10 +23,11 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 /**
  * Módulo compartido de Angular Material
- * 
+ *
  * IMPORTANTE: Solo importa los módulos que realmente uses
  * para mantener el bundle pequeño (tree-shaking)
  */
@@ -52,6 +53,7 @@ const MATERIAL_MODULES = [
   MatTabsModule,
   MatMenuModule,
   MatTooltipModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({
