@@ -8,16 +8,16 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #0B3C5D !important;
-  border-bottom: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #F3F4F6 !important;
+  border-bottom: 1px solid #E5E7EB;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 
   ::ng-deep {
-    background: #0B3C5D !important;
+    background: #F3F4F6 !important;
   }
 
   button[mat-icon-button]:first-child {
@@ -29,7 +29,22 @@
   }
 
   mat-icon {
-    color: #FFFFFF !important;
+    color: #374151 !important;
+  }
+
+  /* En desktop, usar color oscuro */
+  @media (min-width: 768px) {
+    background: #2C3E50 !important;
+    border-bottom: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    ::ng-deep {
+      background: #2C3E50 !important;
+    }
+
+    mat-icon {
+      color: #FFFFFF !important;
+    }
   }
 }
 

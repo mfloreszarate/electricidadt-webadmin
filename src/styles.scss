@@ -22,12 +22,17 @@ body {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.6;
-  color: #1C1C1C;
-  background-color: #E6E6E6;
+  color: #111827;
+  background-color: #F5F7FA;
 }
 
 /* Tipografía mejorada */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   line-height: 1.2;
@@ -89,7 +94,7 @@ p {
   color: #FFFFFF !important;
   box-shadow: 0 2px 8px rgba(11, 60, 93, 0.2);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   &:hover {
     background-color: #F2C300 !important;
     color: #1C1C1C !important;
@@ -101,7 +106,7 @@ p {
 .mat-mdc-raised-button:not(.mat-primary):not([color="primary"]) {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   &:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-1px);
@@ -117,7 +122,7 @@ p {
   box-shadow: 0 2px 8px rgba(242, 195, 0, 0.3);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   font-weight: 700 !important;
-  
+
   &:hover {
     background-color: #E6B800 !important;
     box-shadow: 0 4px 12px rgba(242, 195, 0, 0.4);
@@ -128,11 +133,11 @@ p {
 /* Íconos lineales en azul/negro */
 mat-icon {
   color: #0B3C5D;
-  
+
   &.icon-black {
     color: #1C1C1C;
   }
-  
+
   &.icon-white {
     color: #FFFFFF;
   }
@@ -144,7 +149,7 @@ mat-icon {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   border: 1px solid #E6E6E6;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   &:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-color: #0B3C5D;
@@ -178,16 +183,16 @@ mat-icon {
   border-radius: 12px;
 }
 
-/* Toolbar moderno - Header azul */
+/* Toolbar moderno - Header gris claro en mobile, gris oscuro en desktop */
 .mat-toolbar {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  background: #0B3C5D !important;
-  background-color: #0B3C5D !important;
+  background: #F3F4F6 !important;
+  background-color: #F3F4F6 !important;
   background-image: none !important;
-  color: #FFFFFF !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-bottom: none;
+  color: #111827 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #E5E7EB;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -198,16 +203,47 @@ mat-icon {
   }
 
   mat-icon {
-    color: #FFFFFF !important;
+    color: #374151 !important;
   }
 
-  h1, h2, h3, h4, h5, h6, p, span {
-    color: #FFFFFF !important;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span {
+    color: #111827 !important;
   }
 
   /* Botón del menú siempre a la izquierda */
   button[mat-icon-button]:first-child {
     margin-right: auto;
+  }
+
+  /* En desktop, usar color oscuro */
+  @media (min-width: 768px) {
+    background: #2C3E50 !important;
+    background-color: #2C3E50 !important;
+    color: #FFFFFF !important;
+    border-bottom: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    mat-icon {
+      color: #FFFFFF !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span {
+      color: #FFFFFF !important;
+    }
   }
 }
 
@@ -239,11 +275,11 @@ mat-icon {
   .mat-mdc-text-field-wrapper {
     background-color: #FFFFFF;
   }
-  
+
   .mat-mdc-form-field-label {
     color: #4A4A4A !important;
   }
-  
+
   .mat-mdc-input-element {
     color: #1C1C1C !important;
     caret-color: #0B3C5D;
@@ -288,11 +324,11 @@ mat-icon {
 /* List items claros */
 .mat-mdc-list-item {
   color: #1C1C1C;
-  
+
   .mat-mdc-list-item-title {
     color: #1C1C1C;
   }
-  
+
   .mat-mdc-list-item-line {
     color: #4A4A4A;
   }
