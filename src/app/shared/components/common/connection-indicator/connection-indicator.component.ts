@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, interval } from 'rxjs';
-import { ConnectionService } from '../../services/connection.service';
-import { OfflineQueueService } from '../../services/offline-queue.service';
+import { ConnectionService } from '../../../../core/services/connection.service';
+import { OfflineQueueService } from '../../../../core/services/offline-queue.service';
 
 @Component({
   selector: 'app-connection-indicator',
   templateUrl: './connection-indicator.component.html',
-  styleUrls: ['./connection-indicator.component.scss']
+  styleUrls: ['./connection-indicator.component.scss'],
+  standalone: false
 })
 export class ConnectionIndicatorComponent implements OnInit, OnDestroy {
   isOnline = true;

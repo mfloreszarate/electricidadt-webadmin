@@ -4,16 +4,17 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
-import { EmpleadosService, Empleado } from '../../services/empleados.service';
-import { SidebarService } from '../../services/sidebar.service';
-import { ConfirmDialogComponent, ConfirmDialogData } from '../confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../shared/components/common/confirm-dialog/confirm-dialog.component';
+import { Empleado, EmpleadosService } from '../../../../core/services/empleados.service';
+import { SidebarService } from '../../../../core/services/sidebar.service';
 
 @Component({
-  selector: 'app-empleados-list',
-  templateUrl: './empleados-list.component.html',
-  styleUrls: ['./empleados-list.component.scss']
+  selector: 'app-employees-list',
+  templateUrl: './employees.component.html',
+  styleUrls: ['./employees.component.scss'],
+  standalone: false
 })
-export class EmpleadosListComponent implements OnInit, AfterViewInit {
+export class EmployeesListComponent implements OnInit, AfterViewInit {
   empleados: Empleado[] = [];
   dataSource = new MatTableDataSource<Empleado>([]);
   displayedColumns: string[] = ['nombre', 'apellido', 'email', 'telefono', 'puesto', 'departamento', 'activo', 'acciones'];

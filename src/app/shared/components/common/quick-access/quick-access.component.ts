@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-quick-access',
   templateUrl: './quick-access.component.html',
-  styleUrls: ['./quick-access.component.scss']
+  styleUrls: ['./quick-access.component.scss'],
+  standalone: false
 })
 export class QuickAccessComponent {
   quickActions = [

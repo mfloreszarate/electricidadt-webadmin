@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SharedModule } from '../../../shared/components/shared.module';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../../../shared/components/material.module';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  standalone: false
+
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -16,6 +21,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router
   ) {
+    console.log('LoginComponent constructor');
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -28,7 +34,7 @@ export class LoginComponent {
       // Simulación de login
       setTimeout(() => {
         this.isLoading = false;
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/admin/dashboard']);
       }, 1500);
     }
   }

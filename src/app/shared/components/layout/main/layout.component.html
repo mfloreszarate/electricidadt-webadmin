@@ -1,0 +1,28 @@
+<div class="app-container">
+  <mat-toolbar class="dashboard-header">
+    <button mat-icon-button (click)="toggleSidebar()" aria-label="Abrir menú">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="header-content"></div>
+    <button mat-icon-button aria-label="Notificaciones">
+      <mat-icon [matBadge]="3" matBadgeColor="warn" class="notifications-icon">notifications</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <app-connection-indicator></app-connection-indicator>
+
+  <app-sidebar [isOpen]="sidebarOpen" (close)="closeSidebar()">
+  </app-sidebar>
+
+  <div class="main-content" [class.sidebar-open]="sidebarOpen">
+    <router-outlet></router-outlet>
+  </div>
+
+  @if (showQuickAccess) {
+  <app-quick-access [class.sidebar-open]="sidebarOpen"></app-quick-access>
+  }
+
+  @if (sidebarOpen) {
+  <div class="sidebar-overlay" [class.active]="sidebarOpen" (click)="closeSidebar()"></div>
+  }
+</div>

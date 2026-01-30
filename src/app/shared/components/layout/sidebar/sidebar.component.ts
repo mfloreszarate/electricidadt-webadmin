@@ -1,12 +1,13 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { SidebarService } from '../../services/sidebar.service';
+import { SidebarService } from '../../../../core/services/sidebar.service';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
+  standalone: false
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   @Input() isOpen = false;
@@ -14,14 +15,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   private subscription?: Subscription;
 
   menuItems = [
-    { icon: 'dashboard', label: 'Dashboard', route: '/dashboard' },
-    { icon: 'people', label: 'Empleados', route: '/empleados' },
-    { icon: 'bolt', label: 'Consumo', route: '/consumo' },
-    { icon: 'receipt', label: 'Facturas', route: '/facturas' },
-    { icon: 'power', label: 'Dispositivos', route: '/dispositivos' },
-    { icon: 'bar_chart', label: 'Estadísticas', route: '/estadisticas' },
-    { icon: 'settings', label: 'Configuración', route: '/configuracion' },
-    { icon: 'help', label: 'Ayuda', route: '/ayuda' }
+    { icon: 'dashboard', label: 'Dashboard', route: '/admin/dashboard' },
+    { icon: 'people', label: 'Empleados', route: '/admin/empleados' },
   ];
 
   constructor(

@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { EmpleadosService, Empleado } from '../../services/empleados.service';
-import { SidebarService } from '../../services/sidebar.service';
+import { Empleado, EmpleadosService } from '../../../../core/services/empleados.service';
+import { SidebarService } from '../../../../core/services/sidebar.service';
 
 @Component({
-  selector: 'app-empleado-form',
-  templateUrl: './empleado-form.component.html',
-  styleUrls: ['./empleado-form.component.scss']
+  selector: 'app-employee-edit',
+  templateUrl: './employee-edit.component.html',
+  styleUrls: ['./employee-edit.component.scss'],
+  standalone: false
 })
-export class EmpleadoFormComponent implements OnInit {
+export class EmployeeEditComponent implements OnInit {
   empleadoForm: FormGroup;
   empleadoId?: number;
   isEditMode = false;
