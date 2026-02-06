@@ -80,11 +80,11 @@ export class EmployeesListComponent implements OnInit, AfterViewInit {
   }
 
   nuevoEmpleado() {
-    this.router.navigate(['/empleados/nuevo']);
+    this.router.navigate(['/admin/empleados/nuevo']);
   }
 
   editarEmpleado(id: number) {
-    this.router.navigate(['/empleados/editar', id]);
+    this.router.navigate(['/admin/empleados/editar', id]);
   }
 
   eliminarEmpleado(empleado: Empleado) {

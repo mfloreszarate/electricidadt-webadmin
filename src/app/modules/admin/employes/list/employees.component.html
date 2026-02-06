@@ -1,23 +1,21 @@
 <div class="empleados-container">
-  <!-- <mat-toolbar class="header-toolbar">
-    <button mat-icon-button (click)="toggleSidebar()" aria-label="Abrir menú">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <div class="header-content"></div>
-    <button mat-raised-button color="primary" (click)="nuevoEmpleado()">
-      <mat-icon>add</mat-icon>
-      <span>Nuevo Empleado</span>
-    </button>
-  </mat-toolbar> -->
-
   <div class="content">
-    <mat-card class="search-card">
-      <div class="search-field">
-        <mat-icon class="search-icon">search</mat-icon>
-        <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()"
-          placeholder="Buscar empleado: nombre, email, puesto..." class="search-input">
+    <div class="actions-container"
+      style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+      <mat-card class="search-card" style="flex: 5;">
+        <div class="search-field">
+          <mat-icon class="search-icon">search</mat-icon>
+          <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()"
+            placeholder="Buscar empleado: nombre, email, puesto..." class="search-input">
+        </div>
+      </mat-card>
+      <div class="actions-container-left" style="flex:1">
+        <button mat-raised-button color="primary" (click)="nuevoEmpleado()">
+          <mat-icon>add</mat-icon>
+          <!-- <span>Nuevo Empleado</span> -->
+        </button>
       </div>
-    </mat-card>
+    </div>
 
     <mat-card class="table-card">
       <mat-card-content>
